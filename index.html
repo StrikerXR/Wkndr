@@ -3,42 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wkndr v2</title>
+    <title>Wkndr</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <main class="glass-container">
+<body class="theme-night"> <main class="glass-container">
         <header>
             <h1>Wkndr</h1>
-            <button id="about-btn" title="About Wkndr">i</button>
         </header>
         
         <section class="date-card">
-            <h2>Today</h2>
-            <p id="current-date">Syncing with server...</p>
+            <div id="live-clock">--:--:-- --</div>
+            <p id="current-date">Loading...</p>
         </section>
 
-        <section class="date-card">
-            <h2>Tomorrow</h2>
-            <p id="tomorrow-date">...</p>
-        </section>
-
-        <section id="countdown-wrapper" class="countdown-card">
-            <div id="weekend-countdown-number" class="countdown-number">--</div>
-            <p id="weekend-countdown-text">days until the weekend</p>
+        <section class="countdown-card">
+            <h2>Weekend In</h2>
+            <p id="weekend-countdown-text">Calculating...</p>
         </section>
     </main>
-
-    <dialog id="about-dialog">
-        <h2>About Wkndr v2</h2>
-        <p>This date tracker uses the <a href="http://worldtimeapi.org/" target="_blank">WorldTimeAPI</a> to ensure the date is always accurate for the Central Time Zone (<code>America/Chicago</code>).</p>
-        <p>This avoids relying on your system clock!</p>
-        <button id="close-dialog-btn">Close</button>
-    </dialog>
 
     <script src="script.js"></script>
 </body>
