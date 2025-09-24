@@ -5,23 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wkndr</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="theme-night"> <main class="glass-container">
+<body>
+
+    <main class="glass-container">
         <header>
             <h1>Wkndr</h1>
         </header>
         
         <section class="date-card">
-            <div id="live-clock">--:--:-- --</div>
+            <h2>Today</h2>
             <p id="current-date">Loading...</p>
         </section>
 
+        <section class="date-card">
+            <h2>Tomorrow</h2>
+            <p id="tomorrow-date">Loading...</p>
+        </section>
+
         <section class="countdown-card">
-            <h2>Weekend In</h2>
-            <p id="weekend-countdown-text">Calculating...</p>
+            <div id="weekend-countdown-number" class="countdown-number">--</div>
+            <p id="weekend-countdown-text">days until the weekend</p>
         </section>
     </main>
 
