@@ -1,4 +1,11 @@
 /* General Body Styling */
+:root {
+    --day-gradient: linear-gradient(135deg, #00b4d8, #0077b6); /* Light blue for daytime */
+    --sunset-gradient: linear-gradient(135deg, #ff7e5f, #feb47b); /* Orange/pink for sunset */
+    --night-gradient: linear-gradient(135deg, #0f0c29, #3a3a3a, #200122); /* Dark purples/greys for night */
+    --current-gradient: var(--day-gradient);
+}
+
 body {
     margin: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -9,126 +16,21 @@ body {
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-
-    /* New: Dynamic Background Gradient */
-    background: linear-gradient(135deg, #6a11cb, #2575fc, #00d4ff, #833ab4);
-    background-size: 400% 400%; /* For the animation */
-    animation: backgroundShift 15s ease infinite;
+    background: var(--current-gradient);
+    background-size: 400% 400%;
+    transition: background 1.5s ease-in-out; /* Smooth transition between gradients */
 }
 
-/* The Main "Liquid Glass" Container */
-.glass-container {
-    width: 100%;
-    max-width: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(40px); /* Increased blur for a softer effect */
-    -webkit-backdrop-filter: blur(40px); /* For Safari */
-    border-radius: 25px; /* Softer, larger border-radius */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Slightly more visible border */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); /* Deeper shadow for more depth */
-    padding: 30px;
-    text-align: center;
-    position: relative; /* For the shimmer effect */
-    overflow: hidden; /* To contain the shimmer */
-    animation: fadeIn 1s ease-out;
+/* ... keep the rest of your CSS from the previous version ... */
 
-    /* New: Liquid shimmer effect */
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        transform: skewX(-20deg);
-        filter: blur(10px);
-        transition: transform 0.5s ease;
-    }
-}
-
-.glass-container:hover::before {
-    transform: skewX(-20deg) translateX(200%); /* Moves the shimmer across on hover */
-}
-
-/* Header Style */
-header h1 {
-    font-size: 3.5rem; /* Larger font size */
-    font-weight: 900;
-    margin-top: 0;
-    margin-bottom: 2rem;
-    letter-spacing: -2px;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added text shadow for depth */
-}
-
-/* Individual Card Styles */
-.date-card, .countdown-card {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px; /* Softer, larger border-radius */
-    padding: 18px 25px;
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.date-card:hover, .countdown-card:hover {
-    transform: translateY(-8px) scale(1.02); /* More pronounced hover effect */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Deeper hover shadow */
-}
-
-.date-card h2 {
-    margin: 0 0 5px 0;
-    font-weight: 700;
-    font-size: 1.3rem;
-    opacity: 0.9;
-}
-
-.date-card p {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-/* Weekend Countdown Specific Styles */
-.countdown-card {
-    padding: 30px 25px;
-}
-
-.countdown-number {
-    font-size: 5rem; /* Larger font size */
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 5px;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#weekend-countdown-text {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-/* Lightweight Fade-in Animation */
+/* Keyframe animation is no longer needed since we are using CSS variables for the gradient */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.9); /* Starts smaller */
+        transform: scale(0.9);
     }
     to {
         opacity: 1;
         transform: scale(1);
-    }
-}
-
-/* New: Keyframe animation for the background */
-@keyframes backgroundShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
     }
 }
