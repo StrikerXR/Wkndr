@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    transition: background-image 2s ease-in-out;
 }
 
 /* The Main "Liquid Glass" Container */
@@ -37,7 +38,7 @@ header h1 {
 }
 
 /* Individual Card Styles */
-.date-card, .countdown-card {
+.date-card, .countdown-card, .weather-card {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 15px;
     padding: 15px 20px;
@@ -45,7 +46,7 @@ header h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.date-card:hover, .countdown-card:hover {
+.date-card:hover, .countdown-card:hover, .weather-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -82,6 +83,27 @@ header h1 {
     opacity: 0.9;
 }
 
+/* Weather Card Specific Styles */
+.weather-card {
+    text-align: center;
+}
+
+.temp-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#weather-temperature {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+#weather-icon {
+    font-size: 2rem;
+}
 
 /* Lightweight Fade-in Animation */
 @keyframes fadeIn {
