@@ -1,89 +1,50 @@
-// Wait for the document to be fully loaded
+// Wait for the document to be fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Get references to HTML elements ---
+    // Get references to the HTML elements we need to update
     const currentDateElement = document.getElementById('current-date');
     const tomorrowDateElement = document.getElementById('tomorrow-date');
-    const countdownWrapper = document.getElementById('countdown-wrapper');
     const weekendCountdownNumberElement = document.getElementById('weekend-countdown-number');
     const weekendCountdownTextElement = document.getElementById('weekend-countdown-text');
-    const aboutBtn = document.getElementById('about-btn');
-    const aboutDialog = document.getElementById('about-dialog');
-    const closeDialogBtn = document.getElementById('close-dialog-btn');
 
-    const TIMEZONE = 'America/Chicago'; // Central Time for Broken Arrow, OK
-
-    // --- Modern async function to fetch time and update UI ---
-    const initializeTracker = async () => {
-        try {
-            // Fetch data from the WorldTimeAPI
-            const response = await fetch(`http://worldtimeapi.org/api/timezone/${TIMEZONE}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-
-            // Create a Date object from the server's ISO 8601 datetime string
-            // This is the key to ignoring the system clock!
-            const today = new Date(data.datetime);
-
-            // --- Update UI with fetched data ---
-            updateDates(today);
-            updateWeekendCountdown(today);
-
-        } catch (error) {
-            console.error('Failed to fetch time:', error);
-            currentDateElement.textContent = 'Error syncing time.';
-        }
-    };
-
-    // Helper function to format dates
+    // Function to format dates into a readable string (e.g., "Tuesday, September 23, 2025")
     const formatDate = (date) => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString('en-US', options);
     };
 
-    // Function to update the date cards
-    const updateDates = (today) => {
-        currentDateElement.textContent = formatDate(today);
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        tomorrowDateElement.textContent = formatDate(tomorrow);
-    };
+    // --- Core Logic ---
 
-    // Function to update the weekend countdown
-    const updateWeekendCountdown = (today) => {
-        const currentDay = today.getDay(); // Sunday = 0, ..., Saturday = 6
+    // 1. Calculate and display the current date
+    const today = new Date();
+    currentDateElement.textContent = formatDate(today);
 
-        // Add this class for the :has() CSS selector
-        const addWeekendGlow = () => {
-            weekendCountdownNumberElement.classList.add('weekend-emoji');
-        };
+    // 2. Calculate and display tomorrow's date
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    tomorrowDateElement.textContent = formatDate(tomorrow);
 
-        if (currentDay === 5) { // Friday
-            weekendCountdownNumberElement.textContent = '1';
-            weekendCountdownTextElement.textContent = "day until the weekend!";
-        } else if (currentDay === 6 || currentDay === 0) { // Saturday or Sunday
-            weekendCountdownNumberElement.textContent = currentDay === 6 ? "🎉" : "😎";
-            weekendCountdownTextElement.textContent = "It's the weekend!";
-            addWeekendGlow(); // Activate the special style
-        } else { // Monday to Thursday
-            const daysUntilFriday = 5 - currentDay;
-            weekendCountdownNumberElement.textContent = daysUntilFriday;
-            weekendCountdownTextElement.textContent = daysUntilFriday === 1 ? "day until the weekend" : "days until the weekend";
-        }
-    };
+    // 3. Calculate and display days until the weekend
+    const currentDay = today.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
 
-    // --- Event Listeners for the Dialog ---
-    aboutBtn.addEventListener('click', () => {
-        aboutDialog.showModal(); // Native browser API to show the dialog
-    });
+    let daysUntilWeekend;
 
-    closeDialogBtn.addEventListener('click', () => {
-        aboutDialog.close(); // Native browser API to close the dialog
-    });
+    if (currentDay === 5) { // Friday
+        daysUntilWeekend = 1;
+        weekendCountdownNumberElement.textContent = daysUntilWeekend;
+        weekendCountdownTextElement.textContent = "day until the weekend!";
+    } else if (currentDay === 6) { // Saturday
+        daysUntilWeekend = 0;
+        weekendCountdownNumberElement.textContent = "🎉";
+        weekendCountdownTextElement.textContent = "It's the weekend!";
+    } else if (currentDay === 0) { // Sunday
+        daysUntilWeekend = 0;
+        weekendCountdownNumberElement.textContent = "😎";
+        weekendCountdownTextElement.textContent = "Enjoy your weekend!";
+    } else { // Monday to Thursday
+        daysUntilWeekend = 5 - currentDay; // Days until Friday
+        weekendCountdownNumberElement.textContent = daysUntilWeekend;
+        weekendCountdownTextElement.textContent = daysUntilWeekend === 1 ? "day until the weekend" : "days until the weekend";
+    }
 
-    // --- Start the app ---
-    initializeTracker();
 });
-                          
