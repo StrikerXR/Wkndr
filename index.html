@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wkndr</title>
+    <title>Wkndr v2</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,25 +14,32 @@
     <main class="glass-container">
         <header>
             <h1>Wkndr</h1>
+            <button id="about-btn" title="About Wkndr">i</button>
         </header>
         
         <section class="date-card">
             <h2>Today</h2>
-            <p id="current-date">Loading...</p>
+            <p id="current-date">Syncing with server...</p>
         </section>
 
         <section class="date-card">
             <h2>Tomorrow</h2>
-            <p id="tomorrow-date">Loading...</p>
+            <p id="tomorrow-date">...</p>
         </section>
 
-        <section class="countdown-card">
+        <section id="countdown-wrapper" class="countdown-card">
             <div id="weekend-countdown-number" class="countdown-number">--</div>
             <p id="weekend-countdown-text">days until the weekend</p>
         </section>
     </main>
 
+    <dialog id="about-dialog">
+        <h2>About Wkndr v2</h2>
+        <p>This date tracker uses the <a href="http://worldtimeapi.org/" target="_blank">WorldTimeAPI</a> to ensure the date is always accurate for the Central Time Zone (<code>America/Chicago</code>).</p>
+        <p>This avoids relying on your system clock!</p>
+        <button id="close-dialog-btn">Close</button>
+    </dialog>
+
     <script src="script.js"></script>
 </body>
-  </html>
-  
+</html>
