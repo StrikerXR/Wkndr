@@ -3,34 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wkndr</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="glass-container">
+    <div class="glass-container">
         <header>
-            <h1>Wkndr</h1>
+            <h1>Your Dashboard</h1>
         </header>
-        
-        <section class="date-card">
+
+        <div class="weather-card">
+            <div class="weather-info">
+                <h2 id="weather-location"></h2>
+                <p id="weather-description"></p>
+                <div class="temp-display">
+                    <span id="weather-icon"></span>
+                    <p id="weather-temperature"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="date-card">
             <h2>Today</h2>
-            <p id="current-date">Loading...</p>
-        </section>
+            <p id="current-date"></p>
+        </div>
 
-        <section class="date-card">
+        <div class="date-card">
             <h2>Tomorrow</h2>
-            <p id="tomorrow-date">Loading...</p>
-        </section>
+            <p id="tomorrow-date"></p>
+        </div>
 
-        <section class="countdown-card">
-            <div id="weekend-countdown-number" class="countdown-number">--</div>
-            <p id="weekend-countdown-text">days until the weekend</p>
-        </section>
-    </main>
+        <div class="countdown-card">
+            <div class="countdown-content">
+                <p class="countdown-number" id="weekend-countdown-number"></p>
+                <p id="weekend-countdown-text"></p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
