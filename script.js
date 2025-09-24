@@ -32,19 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentDay === 5) { // Friday
         daysUntilWeekend = 1;
         weekendCountdownNumberElement.textContent = daysUntilWeekend;
-        weekendCountdownTextElement.textContent = "day until the weekend!";
-    } else if (currentDay === 6) { // Saturday
-        daysUntilWeekend = 0;
+        weekendCountdownTextElement.textContent = "day until the weekend";
+    } else if (currentDay === 6 || currentDay === 0) { // Saturday or Sunday
         weekendCountdownNumberElement.textContent = "🎉";
         weekendCountdownTextElement.textContent = "It's the weekend!";
-    } else if (currentDay === 0) { // Sunday
-        daysUntilWeekend = 0;
-        weekendCountdownNumberElement.textContent = "😎";
-        weekendCountdownTextElement.textContent = "Enjoy your weekend!";
     } else { // Monday to Thursday
         daysUntilWeekend = 5 - currentDay; // Days until Friday
         weekendCountdownNumberElement.textContent = daysUntilWeekend;
         weekendCountdownTextElement.textContent = daysUntilWeekend === 1 ? "day until the weekend" : "days until the weekend";
     }
-
 });
